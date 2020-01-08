@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from './axios-instance';
+import { objectToArray } from './util/object-to-array';
+
+import Navbar from './components/Navbar';
+import AllParticipants from './components/AllParticipants/AllParticipants';
 
 const App = () => {
+  const [participants, setParticipants] = useState([]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const response = await axios.get('/participants.json');
+    const data = await response.data;
+    setParticipants(objectToArray(data));
+  };
+
   return (
-    <div className="app">
-      <h1>App Component</h1>
-    </div>
+    <>
+      <Navbar />
+      <AllParticipants participants={participants} />
+    </>
   );
 };
 
