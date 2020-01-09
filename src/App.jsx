@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from './axios-instance';
 import { objectToArray } from './util/object-to-array';
 
-import Navbar from './components/Navbar';
-import AllParticipants from './components/AllParticipants/AllParticipants';
+import Navigation from './components/Navigation';
+import Teams from './components/Teams/Teams';
 
 const App = () => {
-  const [participants, setParticipants] = useState([]);
+  const [teams, setTeams] = useState([]);
 
   useEffect(() => {
     getData();
@@ -15,13 +15,13 @@ const App = () => {
   const getData = async () => {
     const response = await axios.get('/participants.json');
     const data = await response.data;
-    setParticipants(objectToArray(data));
+    setTeams(objectToArray(data));
   };
 
   return (
     <>
-      <Navbar />
-      <AllParticipants participants={participants} />
+      <Navigation />
+      <Teams teams={teams} />
     </>
   );
 };

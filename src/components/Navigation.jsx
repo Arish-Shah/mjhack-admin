@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navigation = () => {
   return (
     <nav className="navbar navbar-dark bg-primary">
       <span className="navbar-brand mx-auto">
-        <b>Admin</b> | MJ Hack Revolution 2020
+        MJ Hack Revolution / <b>Admin</b>
       </span>
     </nav>
   );
 };
 
-export default Navbar;
+export default Navigation;
