@@ -1,7 +1,12 @@
 import React from 'react';
 
 const Row = ({ serial, team }) => {
-  const { teamName, college, email } = team;
+  const { teamName, college, email, isVerified } = team;
+  let verifiedButton = isVerified ? (
+    <button className="btn btn-primary">Verified</button>
+  ) : (
+    <button className="btn btn-light">Unverified</button>
+  );
 
   return (
     <tr>
@@ -9,6 +14,7 @@ const Row = ({ serial, team }) => {
       <td>{teamName}</td>
       <td>{college}</td>
       <td>{email}</td>
+      <td className="text-center">{verifiedButton}</td>
     </tr>
   );
 };
