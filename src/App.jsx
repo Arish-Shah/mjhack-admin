@@ -3,8 +3,9 @@ import axios from './axios-instance';
 import { Switch, Route } from 'react-router-dom';
 
 import { objectToArray } from './util/object-to-array';
-import Navbar from './components/Navbar';
+import Navigation from './components/Navigation';
 import Teams from './components/Teams/Teams';
+import FourZeroFour from './components/FourZeroFour';
 
 const App = () => {
   const [teams, setTeams] = useState([]);
@@ -21,12 +22,11 @@ const App = () => {
 
   useEffect(() => {
     let updatedDisplayTeams;
+    let keyword = searchText.trim().toUpperCase();
 
-    if (searchText !== '') {
-      updatedDisplayTeams = displayTeams.filter(
-        team =>
-          team.teamName.toUpperCase().indexOf(searchText.trim().toUpperCase()) >
-          -1
+    if (keyword) {
+      updatedDisplayTeams = teams.filter(
+        team => team.teamName.toUpperCase().indexOf(keyword) > -1
       );
     } else {
       updatedDisplayTeams = teams;
@@ -52,19 +52,18 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
+      <Navigation handleSearch={handleSearch} searchText={searchText} />
       <Switch>
         <Route path="/all" exact>
-          <Teams
-            teams={displayTeams}
-            searchText={searchText}
-            onSearch={handleSearch}
-          />
+          <Teams teams={displayTeams} />
         </Route>
         <Route path="/verified" exact>
           <div className="container">
             <h1>verified</h1>
           </div>
+        </Route>
+        <Route path="/">
+          <FourZeroFour />
         </Route>
       </Switch>
     </>

@@ -1,11 +1,20 @@
 import React from 'react';
 
-const Row = ({ serial, team }) => {
-  const { teamName, college, email, isVerified } = team;
+const Row = ({ serial, team, onVerify }) => {
+  const { id, teamName, college, email, isVerified } = team;
+
+  const handleVerify = () => {
+    onVerify(id);
+  };
+
   let verifiedButton = isVerified ? (
-    <button className="btn btn-primary">Verified</button>
+    <button className="btn btn-primary" onClick={handleVerify}>
+      Verified
+    </button>
   ) : (
-    <button className="btn btn-light">Unverified</button>
+    <button className="btn btn-light" onClick={handleVerify}>
+      Unverified
+    </button>
   );
 
   return (

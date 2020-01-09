@@ -7,5 +7,5 @@ export const objectToArray = object => {
     array.push(object[key]);
   });
 
-  return array;
+  return array.reverse();
 };
