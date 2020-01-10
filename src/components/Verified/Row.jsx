@@ -1,23 +1,23 @@
 import React from 'react';
 
-const Row = ({ serial, team, onVerify }) => {
-  const { id, teamName, college, email, isVerified } = team;
+const Row = ({ serial, team, onCheckIn }) => {
+  const { id, teamName, college, email, isCheckedIn } = team;
 
   const handleVerify = () => {
-    onVerify(id);
+    onCheckIn(id);
   };
 
-  let verifiedButton = isVerified ? (
-    <button className="btn btn-primary" onClick={handleVerify}>
-      Verified
+  let verifiedButton = isCheckedIn ? (
+    <button className="btn btn-success" onClick={handleVerify}>
+      Checked In
     </button>
   ) : (
     <button className="btn btn-light" onClick={handleVerify}>
-      Unverified
+      Checked Out
     </button>
   );
 
-  const bgClasses = isVerified ? 'table-primary' : '';
+  const bgClasses = isCheckedIn ? 'table-success' : '';
 
   return (
     <tr className={bgClasses}>
