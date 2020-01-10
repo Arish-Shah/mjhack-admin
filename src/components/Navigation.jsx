@@ -1,13 +1,7 @@
-import React, { useEffect, createRef } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Navigation = ({ searchText, handleSearch }) => {
-  const inputRef = createRef();
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, [inputRef]);
-
   return (
     <>
       <nav className="navbar navbar-dark bg-primary">
@@ -37,7 +31,6 @@ const Navigation = ({ searchText, handleSearch }) => {
                 type="text"
                 className="form-control"
                 placeholder="Search Team Name..."
-                ref={inputRef}
                 value={searchText}
                 onChange={handleSearch}
               />

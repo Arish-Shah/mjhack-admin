@@ -21,6 +21,7 @@ const App = () => {
   useEffect(() => {
     if (!searchText) {
       setDisplayTeams(teams);
+
       const tempVerifiedTeams = teams.filter(team => team.isVerified);
       setVerifiedTeams(tempVerifiedTeams);
     }
@@ -37,12 +38,13 @@ const App = () => {
         team => team.teamName.toUpperCase().indexOf(keyword) > -1
       );
 
-      updatedVerifiedTeams = verifiedTeams.filter(
-        team => team.teamName.toUpperCase().indexOf(keyword) > -1
+      updatedVerifiedTeams = teams.filter(
+        team =>
+          team.teamName.toUpperCase().indexOf(keyword) > -1 && team.isVerified
       );
     } else {
       updatedDisplayTeams = teams;
-      updatedVerifiedTeams = teams.filter(team => team.isCheckedIn);
+      updatedVerifiedTeams = teams.filter(team => team.isVerified);
     }
 
     setDisplayTeams(updatedDisplayTeams);
