@@ -5,13 +5,22 @@ const Teams = ({ teams, onVerify }) => {
   let displayText;
 
   if (teams[0]) {
-    displayText = teams.map((team, i) => (
-      <Row key={i} serial={i + 1} team={team} onVerify={onVerify} />
-    ));
+    displayText = teams.map((team, i) => {
+      let position = i <= teams.length / 2 ? 'down' : 'up';
+      return (
+        <Row
+          key={i}
+          serial={i + 1}
+          team={team}
+          onVerify={onVerify}
+          position={position}
+        />
+      );
+    });
   } else {
     displayText = (
       <tr>
-        <td colSpan="5" className="text-center py-4 text-primary">
+        <td colSpan="6" className="text-center py-4 text-primary">
           <div className="spinner-border"></div>
         </td>
       </tr>
@@ -28,6 +37,7 @@ const Teams = ({ teams, onVerify }) => {
               <th>Team Name</th>
               <th>College</th>
               <th>Email</th>
+              <th className="text-center">Member</th>
               <th className="text-center">Verification</th>
             </tr>
           </thead>

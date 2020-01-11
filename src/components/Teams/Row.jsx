@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Row = ({ serial, team, onVerify }) => {
-  const { id, teamName, college, email, isVerified } = team;
+const Row = ({ serial, team, onVerify, position }) => {
+  const [showDetails, setShowDetails] = useState(false);
+
+  const {
+    id,
+    teamName,
+    college,
+    email,
+    memberNames,
+    memberPhones,
+    isVerified
+  } = team;
 
   const handleVerify = () => {
     onVerify(id);
@@ -17,7 +27,43 @@ const Row = ({ serial, team, onVerify }) => {
     </button>
   );
 
+  const handleShow = () => {
+    const updatedShowDetails = !showDetails;
+    setShowDetails(updatedShowDetails);
+  };
+
   const bgClasses = isVerified ? 'table-primary' : '';
+  const showClasses = showDetails ? 'show' : '';
+  const dropdownButtonColor = isVerified ? 'btn-primary' : 'btn-light';
+  const positionClass = position === 'down' ? 'dropdown' : 'dropup';
+
+  let displayDetails = (
+    <div className={positionClass}>
+      <button
+        className={`btn ${dropdownButtonColor} dropdown-toggle`}
+        onClick={handleShow}
+      >
+        Members
+      </button>
+      <div className={`dropdown-menu dropdown-menu-right ${showClasses}`}>
+        <span className="dropdown-item bg-white">
+          <table className="table table-sm table-borderless">
+            <tbody>
+              {memberNames.map((mn, index) => {
+                const mp = memberPhones[index];
+                return (
+                  <tr key={index}>
+                    <td className="font-weight-bold">{mn}</td>
+                    <td>{mp}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </span>
+      </div>
+    </div>
+  );
 
   return (
     <tr className={bgClasses}>
@@ -25,6 +71,7 @@ const Row = ({ serial, team, onVerify }) => {
       <td>{teamName}</td>
       <td>{college}</td>
       <td>{email}</td>
+      <td className="text-center">{displayDetails}</td>
       <td className="text-center">{verifiedButton}</td>
     </tr>
   );
