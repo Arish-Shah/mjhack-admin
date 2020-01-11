@@ -41,7 +41,8 @@ const Row = ({ serial, team, onCheckIn, position }) => {
     <div className={positionClass}>
       <button
         className={`btn ${dropdownButtonColor} dropdown-toggle`}
-        onClick={handleShow}
+        onMouseEnter={handleShow}
+        onMouseLeave={handleShow}
       >
         Members
       </button>
