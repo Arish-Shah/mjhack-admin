@@ -1,8 +1,6 @@
 # mjhack-admin
 
-## Deploy Status
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c7121712-c27f-4fc7-bbb1-ff6e3bd4c02e/deploy-status)](https://app.netlify.com/sites/mjhack-admin/deploys)
+Admin Panel for MJHack-Revolution Website.
 
 ## Getting Started
 
